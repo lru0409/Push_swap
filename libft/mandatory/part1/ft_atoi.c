@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 21:43:10 by rolee             #+#    #+#             */
-/*   Updated: 2024/04/23 21:59:08 by rolee            ###   ########.fr       */
+/*   Created: 2022/10/09 22:16:24 by rolee             #+#    #+#             */
+/*   Updated: 2024/03/20 13:26:56 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../libft.h"
 
-int main(int argc, char *argv[])
+int	ft_atoi(const char *str)
 {
-	argc = 0;
-	t_stack_set *stacks = init_stack_set(argv + 1);
+	int	idx;
+	int	sign;
+	int	num;
 
-	t_node *current = stacks->a->top;
-	while (current)
+	idx = 0;
+	sign = 1;
+	while (str[idx] == 32 || (9 <= str[idx] && str[idx] <= 13))
+		idx++;
+	if (str[idx] == '-' || str[idx] == '+')
 	{
-		printf("%d\n", current->data);
-		current = current->next;
+		if (str[idx] == '-')
+			sign *= -1;
+		idx++;
 	}
-
-	return 0;
+	num = 0;
+	while (ft_isdigit(str[idx]))
+	{
+		num = (10 * num) + str[idx] - '0';
+		idx++;
+	}
+	return (num * sign);
 }

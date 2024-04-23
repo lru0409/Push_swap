@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 21:43:10 by rolee             #+#    #+#             */
-/*   Updated: 2024/04/23 21:59:08 by rolee            ###   ########.fr       */
+/*   Created: 2022/10/06 17:27:52 by rolee             #+#    #+#             */
+/*   Updated: 2024/03/20 16:57:00 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../libft.h"
 
-int main(int argc, char *argv[])
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	argc = 0;
-	t_stack_set *stacks = init_stack_set(argv + 1);
+	size_t	dst_idx;
+	size_t	src_idx;
 
-	t_node *current = stacks->a->top;
-	while (current)
+	dst_idx = 0;
+	while (dst[dst_idx] && dst_idx < dstsize)
+		dst_idx++;
+	src_idx = 0;
+	while (src[src_idx] && dst_idx + src_idx + 1 < dstsize)
 	{
-		printf("%d\n", current->data);
-		current = current->next;
+		dst[dst_idx + src_idx] = src[src_idx];
+		src_idx++;
 	}
-
-	return 0;
+	if (dst_idx < dstsize)
+		dst[dst_idx + src_idx] = 0;
+	return (dst_idx + ft_strlen(src));
 }

@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 21:43:10 by rolee             #+#    #+#             */
-/*   Updated: 2024/04/23 21:59:08 by rolee            ###   ########.fr       */
+/*   Created: 2022/11/11 10:59:26 by rolee             #+#    #+#             */
+/*   Updated: 2024/03/29 13:37:38 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../libft.h"
 
-int main(int argc, char *argv[])
+void	ft_putstr_fd(char *s, int fd)
 {
-	argc = 0;
-	t_stack_set *stacks = init_stack_set(argv + 1);
+	int	idx;
 
-	t_node *current = stacks->a->top;
-	while (current)
+	if (fd < 0 || !s)
+		return ;
+	idx = 0;
+	while (s[idx])
 	{
-		printf("%d\n", current->data);
-		current = current->next;
+		write(fd, &s[idx], 1);
+		idx++;
 	}
-
-	return 0;
 }

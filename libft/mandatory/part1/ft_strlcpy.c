@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 21:43:10 by rolee             #+#    #+#             */
-/*   Updated: 2024/04/23 21:59:08 by rolee            ###   ########.fr       */
+/*   Created: 2022/10/04 08:04:51 by rolee             #+#    #+#             */
+/*   Updated: 2024/03/20 16:55:42 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../libft.h"
 
-int main(int argc, char *argv[])
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	argc = 0;
-	t_stack_set *stacks = init_stack_set(argv + 1);
+	size_t	idx;
 
-	t_node *current = stacks->a->top;
-	while (current)
+	idx = 0;
+	while (src[idx] && idx + 1 < dstsize)
 	{
-		printf("%d\n", current->data);
-		current = current->next;
+		dst[idx] = src[idx];
+		idx++;
 	}
-
-	return 0;
+	if (dstsize > 0)
+		dst[idx] = 0;
+	return (ft_strlen(src));
 }

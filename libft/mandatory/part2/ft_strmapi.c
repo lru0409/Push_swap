@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 21:43:10 by rolee             #+#    #+#             */
-/*   Updated: 2024/04/23 21:59:08 by rolee            ###   ########.fr       */
+/*   Created: 2022/11/11 09:10:29 by rolee             #+#    #+#             */
+/*   Updated: 2024/03/20 17:12:15 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../libft.h"
 
-int main(int argc, char *argv[])
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	argc = 0;
-	t_stack_set *stacks = init_stack_set(argv + 1);
+	unsigned int	alloc_len;
+	char			*result;
+	unsigned int	idx;
 
-	t_node *current = stacks->a->top;
-	while (current)
+	alloc_len = ft_strlen(s);
+	result = (char *)malloc(alloc_len + 1);
+	if (!result)
+		return (NULL);
+	idx = 0;
+	while (s[idx])
 	{
-		printf("%d\n", current->data);
-		current = current->next;
+		result[idx] = f(idx, s[idx]);
+		idx++;
 	}
-
-	return 0;
+	result[idx] = 0;
+	return (result);
 }

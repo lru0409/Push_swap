@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 21:43:10 by rolee             #+#    #+#             */
-/*   Updated: 2024/04/23 21:59:08 by rolee            ###   ########.fr       */
+/*   Created: 2022/10/06 08:24:25 by rolee             #+#    #+#             */
+/*   Updated: 2024/03/20 13:26:21 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../libft.h"
 
-int main(int argc, char *argv[])
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	argc = 0;
-	t_stack_set *stacks = init_stack_set(argv + 1);
+	size_t	idx;
 
-	t_node *current = stacks->a->top;
-	while (current)
+	if (n == 0)
+		return (0);
+	idx = 0;
+	while (idx < n && s1[idx] && s2[idx])
 	{
-		printf("%d\n", current->data);
-		current = current->next;
+		if (s1[idx] != s2[idx])
+			break ;
+		idx++;
 	}
-
-	return 0;
+	if (idx == n)
+		return (0);
+	return ((unsigned char)s1[idx] - (unsigned char)s2[idx]);
 }

@@ -3,6 +3,9 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include "../libft/libft.h"
+
+#include <stdio.h>
 
 typedef struct s_node
 {
@@ -24,5 +27,14 @@ typedef struct s_stack_set
 	t_stack	*a;
 	t_stack	*b;
 }	t_stack_set;
+
+t_stack_set *init_stack_set(char *argv[]);
+
+void	freeStrs(char **strs);
+
+t_node	*create_node(int data);
+void	push_back(t_stack *stack, t_node *new_node);
+void	clear_all_nodes(t_stack *stack);
+
 
 #endif

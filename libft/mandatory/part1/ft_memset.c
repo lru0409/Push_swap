@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 21:43:10 by rolee             #+#    #+#             */
-/*   Updated: 2024/04/23 21:59:08 by rolee            ###   ########.fr       */
+/*   Created: 2022/11/07 14:50:53 by rolee             #+#    #+#             */
+/*   Updated: 2024/03/20 13:26:21 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../libft.h"
 
-int main(int argc, char *argv[])
+void	*ft_memset(void *b, int c, size_t len)
 {
-	argc = 0;
-	t_stack_set *stacks = init_stack_set(argv + 1);
+	size_t	idx;
 
-	t_node *current = stacks->a->top;
-	while (current)
+	idx = 0;
+	while (idx < len)
 	{
-		printf("%d\n", current->data);
-		current = current->next;
+		((unsigned char *)b)[idx] = (unsigned char)c;
+		idx++;
 	}
-
-	return 0;
+	return (b);
 }

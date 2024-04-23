@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 21:43:10 by rolee             #+#    #+#             */
-/*   Updated: 2024/04/23 21:59:08 by rolee            ###   ########.fr       */
+/*   Created: 2022/11/07 18:51:22 by rolee             #+#    #+#             */
+/*   Updated: 2024/03/20 16:51:15 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../libft.h"
 
-int main(int argc, char *argv[])
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	argc = 0;
-	t_stack_set *stacks = init_stack_set(argv + 1);
+	size_t	idx;
 
-	t_node *current = stacks->a->top;
-	while (current)
+	idx = 0;
+	while (idx < n)
 	{
-		printf("%d\n", current->data);
-		current = current->next;
+		if (((unsigned char *)s1)[idx] != ((unsigned char *)s2)[idx])
+			break ;
+		idx++;
 	}
-
-	return 0;
+	if (idx == n)
+		return (0);
+	return (((unsigned char *)s1)[idx] - ((unsigned char *)s2)[idx]);
 }

@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 21:43:10 by rolee             #+#    #+#             */
-/*   Updated: 2024/04/23 21:59:08 by rolee            ###   ########.fr       */
+/*   Created: 2022/11/11 16:03:51 by rolee             #+#    #+#             */
+/*   Updated: 2024/03/20 13:25:28 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../libft.h"
 
-int main(int argc, char *argv[])
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	argc = 0;
-	t_stack_set *stacks = init_stack_set(argv + 1);
-
-	t_node *current = stacks->a->top;
-	while (current)
-	{
-		printf("%d\n", current->data);
-		current = current->next;
-	}
-
-	return 0;
+	del(lst->content);
+	free(lst);
 }

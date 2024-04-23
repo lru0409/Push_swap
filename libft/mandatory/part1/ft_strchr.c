@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 21:43:10 by rolee             #+#    #+#             */
-/*   Updated: 2024/04/23 21:59:08 by rolee            ###   ########.fr       */
+/*   Created: 2022/11/07 18:00:44 by rolee             #+#    #+#             */
+/*   Updated: 2024/03/20 16:59:03 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../libft.h"
 
-int main(int argc, char *argv[])
+char	*ft_strchr(const char *s, int c)
 {
-	argc = 0;
-	t_stack_set *stacks = init_stack_set(argv + 1);
+	int		idx;
 
-	t_node *current = stacks->a->top;
-	while (current)
+	idx = 0;
+	while (s[idx])
 	{
-		printf("%d\n", current->data);
-		current = current->next;
+		if (s[idx] == (char)c)
+			return (&((char *)s)[idx]);
+		idx++;
 	}
-
-	return 0;
+	if ((char)c == 0)
+		return (&((char *)s)[idx]);
+	return (NULL);
 }

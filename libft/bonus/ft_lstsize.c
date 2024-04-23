@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 21:43:10 by rolee             #+#    #+#             */
-/*   Updated: 2024/04/23 21:59:08 by rolee            ###   ########.fr       */
+/*   Created: 2022/11/11 15:51:20 by rolee             #+#    #+#             */
+/*   Updated: 2024/03/20 13:25:36 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../libft.h"
 
-int main(int argc, char *argv[])
+int	ft_lstsize(t_list *lst)
 {
-	argc = 0;
-	t_stack_set *stacks = init_stack_set(argv + 1);
+	t_list	*current_node;
+	int		size;
 
-	t_node *current = stacks->a->top;
-	while (current)
+	current_node = lst;
+	size = 0;
+	while (current_node)
 	{
-		printf("%d\n", current->data);
-		current = current->next;
+		size++;
+		current_node = current_node->next;
 	}
-
-	return 0;
+	return (size);
 }

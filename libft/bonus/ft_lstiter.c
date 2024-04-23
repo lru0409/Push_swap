@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 21:43:10 by rolee             #+#    #+#             */
-/*   Updated: 2024/04/23 21:59:08 by rolee            ###   ########.fr       */
+/*   Created: 2022/11/11 16:38:05 by rolee             #+#    #+#             */
+/*   Updated: 2024/03/20 13:25:30 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../libft.h"
 
-int main(int argc, char *argv[])
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	argc = 0;
-	t_stack_set *stacks = init_stack_set(argv + 1);
+	t_list	*current_node;
 
-	t_node *current = stacks->a->top;
-	while (current)
+	current_node = lst;
+	while (current_node)
 	{
-		printf("%d\n", current->data);
-		current = current->next;
+		f(current_node->content);
+		current_node = current_node->next;
 	}
-
-	return 0;
 }
