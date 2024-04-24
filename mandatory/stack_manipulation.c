@@ -6,13 +6,13 @@
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:58:24 by rolee             #+#    #+#             */
-/*   Updated: 2024/04/22 21:45:12 by rolee            ###   ########.fr       */
+/*   Updated: 2024/04/24 21:04:58 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void printCommand(char *cmd, size_t cmd_size, char stack);
+static void print_command(char *cmd, size_t cmd_size, char stack);
 
 void	swap(t_stack *stack)
 {
@@ -24,27 +24,27 @@ void	swap(t_stack *stack)
 	printCommand("s", 1, stack->name);
 }
 
-void	push(t_stack *pop_stack, t_stack *push_stack)
+void	push(t_stack *from, t_stack *to)
 {
 	t_node	*moving_node;
 
-	if (pop_stack->size == 0)
+	if (from->size == 0)
 		return;
-	moving_node = pop_stack->top;
-	pop_stack->top = pop_stack->top->next;
-	if (pop_stack->top)
-		pop_stack->top->prev = NULL;
+	moving_node = from->top;
+	from->top = from->top->next;
+	if (from->top)
+		from->top->prev = NULL;
 	else
-		pop_stack->bottom = NULL;
-	moving_node->next = push_stack->top;
-	if (push_stack->top)
-		push_stack->top->prev = moving_node;
+		from->bottom = NULL;
+	moving_node->next = to->top;
+	if (to->top)
+		to->top->prev = moving_node;
 	else
-		push_stack->bottom = moving_node;
-	push_stack->top = moving_node;
-	pop_stack->size -= 1;
-	push_stack->size += 1;
-	printCommand("p", 1, push_stack->name);
+		to->bottom = moving_node;
+	to->top = moving_node;
+	from->size -= 1;
+	to->size += 1;
+	printCommand("p", 1, to->name);
 }
 
 void	rotate(t_stack *stack)
@@ -62,7 +62,7 @@ void	rotate(t_stack *stack)
 	printCommand("r", 1, stack->name);
 }
 
-void	reverseRotate(t_stack *stack)
+void	reverse_rotate(t_stack *stack)
 {
 	t_node *moving_node;
 
@@ -78,14 +78,14 @@ void	reverseRotate(t_stack *stack)
 	printCommand("rr", 2, stack->name);
 }
 
-void	reverseRotateAll(t_stack *a, t_stack *b)
+void	reverse_rotate_all(t_stack *a, t_stack *b)
 {
 	reverseRotate(a);
 	reverseRotate(b);
 	printCommand("rr", 2, 'r');
 }
 
-static void printCommand(char *cmd, size_t cmd_size, char stack)
+static void print_command(char *cmd, size_t cmd_size, char stack)
 {
 	write(STDOUT_FILENO, cmd, cmd_size);
 	write(STDOUT_FILENO, &stack, 1);

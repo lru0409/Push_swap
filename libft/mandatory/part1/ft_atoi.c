@@ -6,13 +6,11 @@
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 22:16:24 by rolee             #+#    #+#             */
-/*   Updated: 2024/04/24 20:33:33 by rolee            ###   ########.fr       */
+/*   Updated: 2024/04/24 20:45:32 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../libft.h"
-
-#include <stdio.h>
 
 long long	ft_atoi(const char *str)
 {

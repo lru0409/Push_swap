@@ -6,7 +6,7 @@
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 20:56:32 by rolee             #+#    #+#             */
-/*   Updated: 2024/04/24 20:15:50 by rolee            ###   ########.fr       */
+/*   Updated: 2024/04/24 20:37:02 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	clear_all_nodes(t_stack *stack)
 	t_node *current;
 	t_node *next;
 
+	if (stack == NULL)
+		return;
 	current = stack->top;
 	while (current)
 	{

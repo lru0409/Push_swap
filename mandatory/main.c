@@ -6,7 +6,7 @@
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 21:43:10 by rolee             #+#    #+#             */
-/*   Updated: 2024/04/24 20:24:19 by rolee            ###   ########.fr       */
+/*   Updated: 2024/04/24 20:39:23 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ int main(int argc, char *argv[])
 		printf("%d\n", current->data);
 		current = current->next;
 	}
+
+	
+	
 
 	return 0;
 }
