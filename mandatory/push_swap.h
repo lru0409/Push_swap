@@ -7,6 +7,13 @@
 
 #include <stdio.h>
 
+# define FALSE 0
+# define TRUE 1
+
+# define IS_VALID 0
+# define IS_SORTED 1
+# define IS_DUPLICATED 2
+
 typedef struct s_node
 {
 	int				data;
@@ -30,10 +37,11 @@ typedef struct s_stack_set
 
 t_stack_set *init_stack_set(char *argv[]);
 
+int		error_occurred(char *msg, int ret);
 void	freeStrs(char **strs);
+int		is_integer(char *str);
 
-t_node	*create_node(int data);
-void	push_back(t_stack *stack, t_node *new_node);
+int		push_back(t_stack *stack, int data);
 void	clear_all_nodes(t_stack *stack);
 
 

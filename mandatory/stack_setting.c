@@ -6,14 +6,14 @@
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 20:06:51 by rolee             #+#    #+#             */
-/*   Updated: 2024/04/23 21:58:07 by rolee            ###   ########.fr       */
+/*   Updated: 2024/04/24 20:27:45 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 static t_stack *init_stack(char name);
-static int set_a_stack(t_stack **a_stack, char *argv[]);
+static int set_a_stack(t_stack *a_stack, char *argv[]);
 static t_stack_set *clear_stack_set(t_stack_set *stack_set);
 
 t_stack_set *init_stack_set(char *argv[])
@@ -26,7 +26,7 @@ t_stack_set *init_stack_set(char *argv[])
 	stack_set->a = init_stack('a');
 	if (!stack_set->a)
 		return (clear_stack_set(stack_set));
-	if (set_a_stack(&stack_set->a, argv) == EXIT_FAILURE)
+	if (set_a_stack(stack_set->a, argv) == EXIT_FAILURE)
 		return (clear_stack_set(stack_set));
 	stack_set->b = init_stack('b');
 	if (!stack_set->b)
@@ -46,7 +46,7 @@ static t_stack *init_stack(char name)
 	return stack;
 }
 
-static int set_a_stack(t_stack **a_stack, char *argv[])
+static int set_a_stack(t_stack *a_stack, char *argv[])
 {
 	char **strs;
 	int str_idx;
@@ -59,13 +59,12 @@ static int set_a_stack(t_stack **a_stack, char *argv[])
 		str_idx = 0;
 		while (strs[str_idx])
 		{
-			t_node *new_node = create_node(ft_atoi(strs[str_idx]));
-			if (!new_node)
+			if (is_integer(strs[str_idx]) == FALSE ||
+				push_back(a_stack, ft_atoi(strs[str_idx])) == EXIT_FAILURE)
 			{
 				freeStrs(strs);
 				return (EXIT_FAILURE);
 			}
-			push_back(*a_stack, new_node);
 			str_idx++;
 		}
 		freeStrs(strs);

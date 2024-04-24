@@ -6,7 +6,7 @@
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 10:31:34 by rolee             #+#    #+#             */
-/*   Updated: 2024/03/20 17:32:23 by rolee            ###   ########.fr       */
+/*   Updated: 2024/04/24 20:30:30 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strdup(const char *s1);
 
-int		ft_atoi(const char *str);
+long long	ft_atoi(const char *str);
 
 // Mandatory/Part2
 char	*ft_substr(char const *s, unsigned int start, size_t len);
