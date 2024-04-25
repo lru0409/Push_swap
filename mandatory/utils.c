@@ -6,7 +6,7 @@
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 20:42:50 by rolee             #+#    #+#             */
-/*   Updated: 2024/04/24 20:34:29 by rolee            ###   ########.fr       */
+/*   Updated: 2024/04/25 19:23:58 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,13 @@ int is_integer(char *str)
 	if (11 < idx)
 		return (FALSE);
 	return (TRUE);
+}
+
+void	swap_value(int *first, int *second)
+{
+	int temp;
+
+	temp = *first;
+	*first = *second;
+	*second = temp;
 }

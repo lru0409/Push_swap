@@ -6,16 +6,11 @@
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 20:40:34 by rolee             #+#    #+#             */
-/*   Updated: 2024/04/24 21:21:09 by rolee            ###   ########.fr       */
+/*   Updated: 2024/04/25 20:39:22 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "push_swap.h"
-
-void	start_sort()
-{
-	
-}
 
 void reverse_stacks(int ra_cnt, int rb_cnt, t_stack_set *stacks)
 {
@@ -34,14 +29,16 @@ void reverse_stacks(int ra_cnt, int rb_cnt, t_stack_set *stacks)
 	}
 }
 
-int	*partition_a(int size, int small, int big, t_stack_set *stacks)
+int	*partition_a(int size, int *pivot, t_stack_set *stacks)
 {
-	int op_cnt[3];
+	int *op_cnt;
 
-	ft_memset(op_cnt, 0, 3);
+	op_cnt = ft_calloc(3, sizeof(int));
+	if (!op_cnt)
+		exit(EXIT_FAILURE);
 	while (size--)
 	{
-		if (big < stacks->a->top->data)
+		if (pivot[BIG] < stacks->a->top->data)
 		{
 			rotate(stacks->a);
 			op_cnt[RA]++;
@@ -50,24 +47,26 @@ int	*partition_a(int size, int small, int big, t_stack_set *stacks)
 		{
 			push(stacks->a, stacks->b);
 			op_cnt[PB]++;
-			if (small < stacks->b->top->data)
+			if (pivot[SMALL] < stacks->b->top->data)
 			{
 				rotate(stacks->b);
-				op_cnt[PBR]++;
+				op_cnt[RB]++;
 			}
 		}
 	}
 	return (op_cnt);
 }
 
-int	*partition_b(int size, int small, int big, t_stack_set *stacks)
+int	*partition_b(int size, int *pivot, t_stack_set *stacks)
 {
 	int *op_cnt;
 
-	op_cnt = (int *)ft_calloc(3, sizeof(int));
+	op_cnt = ft_calloc(3, sizeof(int));
+	if (!op_cnt)
+		exit(EXIT_FAILURE);
 	while (size--)
 	{
-		if (stacks->b->top->data <= small)
+		if (stacks->b->top->data <= pivot[SMALL])
 		{
 			rotate(stacks->b);
 			op_cnt[RB]++;
@@ -76,17 +75,136 @@ int	*partition_b(int size, int small, int big, t_stack_set *stacks)
 		{
 			push(stacks->b, stacks->a);
 			op_cnt[PA]++;
-			if (stacks->a->top->data <= big)
+			if (stacks->a->top->data <= pivot[BIG])
 			{
 				rotate(stacks->a);
-				op_cnt[PAR]++;
+				op_cnt[RA]++;
 			}
 		}
 	}
 	return (op_cnt);
 }
 
-void	sort_stack()
+int	*get_stack_arr(int size, t_stack *stack)
 {
+	int		*arr;
+	int		idx;
+	t_node	*current;
 	
+	arr = (int *)malloc(sizeof(int) * size);
+	if (!arr)
+		exit(EXIT_FAILURE);
+	idx = 0;
+	current = stack->top;
+	while (size--)
+	{
+		arr[idx++] = current->data;
+		current = current->next;
+	}
+	return arr;
+}
+
+int	*get_pivot(int size, t_stack *stack)
+{
+	int		*arr;
+	int		*pivot;
+
+	arr = get_stack_arr(size, stack);
+	quick_sort(arr, 0, size - 1);
+	pivot = (int *)malloc(sizeof(int) * 2);
+	if (!pivot)
+		exit(EXIT_FAILURE);
+	pivot[SMALL] = arr[(size * 1/3) - 1];
+	pivot[BIG] = arr[(size * 2/3) - 1];
+	free(arr);
+	return (pivot);
+}
+
+int	is_sorted(t_stack *stack, int size)
+{
+	int		count;
+	t_node	*current;
+
+	count = 0;
+	current = stack->top->next;
+	while (count < size - 1)
+	{
+		if (stack->name == 'a' && current->data < current->prev->data)
+			return (FALSE);
+		else if (stack->name == 'b' && current->prev->data < current->data)
+			return (FALSE);
+		current = current->next;
+	}
+	return (TRUE);
+}
+
+void	sort_elements(t_stack *stack, int size, t_stack_set *stacks)
+{
+	if (stack->name == 'b' && size == 1) {
+		push(stacks->b, stacks->a);
+	} else if (stack->name == 'b' && size == 2) {
+		push(stacks->b, stacks->a);
+		push(stacks->b, stacks->a);
+		stack = stacks->a;
+	}
+	if (stack->name == 'a' && size == 2) {
+		if (stack->top->next->data < stack->top->data)
+			swap(stack);
+	}
+}
+
+int	escape_handling(t_stack *stack, int size, t_stack_set *stacks)
+{
+	if (size < 3)
+	{
+		sort_elements(stack, size, stacks);
+		return (TRUE);
+	}
+	if (is_sorted(stack, size) == TRUE)
+	{
+		if (stack->name == 'b')
+		{
+			while (size--)
+				push(stacks->b, stacks->a);
+		}
+		return (TRUE);
+	}
+	return (FALSE);
+}
+
+void	sort_stack(t_stack *stack, int size, t_stack_set *stacks)
+{
+	int *pivot;
+	int *op_cnt;
+
+	if (escape_handling(stack, size, stacks) == TRUE)
+		return;
+	pivot = get_pivot(size, stack);
+	if (stack->name == 'a') {
+		op_cnt = partition_a(size, pivot, stacks);
+		reverse_stacks(op_cnt[RA], op_cnt[RB], stacks);
+		sort_stack(stacks->a, op_cnt[RA], stacks);
+		sort_stack(stacks->b, op_cnt[RB], stacks);
+		sort_stack(stacks->b, op_cnt[PB] - op_cnt[RB], stacks);
+	} else {
+		op_cnt = partition_b(size, pivot, stacks);
+		sort_stack(stacks->a, op_cnt[PA] - op_cnt[RA], stacks);
+		reverse_stacks(op_cnt[RA], op_cnt[RB], stacks);
+		sort_stack(stacks->a, op_cnt[RA], stacks);
+		sort_stack(stacks->b, op_cnt[RB], stacks);
+	}
+	free(pivot);
+	free(op_cnt);
+}
+
+void	start_sort(t_stack_set *stacks)
+{
+	int	*pivot;
+	int	*op_cnt;
+
+	pivot = get_pivot(stacks->a->size, stacks->a);
+	op_cnt = first_partition(stacks->a->size, pivot, stacks);
+	sort_stack(stacks->a, op_cnt[RA], stacks);
+	sort_stack(stacks->b, op_cnt[PB] - op_cnt[RB], stacks);
+	sort_stack(stacks->b, op_cnt[RB], stacks);
 }

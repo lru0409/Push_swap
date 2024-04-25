@@ -6,7 +6,7 @@
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 21:43:10 by rolee             #+#    #+#             */
-/*   Updated: 2024/04/24 20:39:23 by rolee            ###   ########.fr       */
+/*   Updated: 2024/04/25 20:40:02 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int check_elements(t_stack *stack)
 			compare = compare->next;
 		}
 		if (current->prev->data < current->data)
-			sorted_cnt += 1;
+			sorted_cnt++;
 		current = current->next;
 	}
 	if (sorted_cnt == stack->size - 1)
@@ -53,6 +53,8 @@ int main(int argc, char *argv[])
 		return (0);
 	if (elements_state == IS_DUPLICATED)
 		return (error_occurred("Error", 0));
+	
+	// start_sort(stacks);
 
 	t_node *current = stacks->a->top;
 	while (current)
@@ -60,9 +62,6 @@ int main(int argc, char *argv[])
 		printf("%d\n", current->data);
 		current = current->next;
 	}
-
-	
-	
 
 	return 0;
 }

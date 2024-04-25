@@ -14,16 +14,13 @@
 # define IS_SORTED 1
 # define IS_DUPLICATED 2
 
-// 여기 좀 합치고, PBR, PAR 이런 것도 없애면 좋을 듯
-// A 스택 작업
 # define RA 0
 # define PB 1
-# define PBR 2
-
-// B 스택 작업
-# define RB 0
+# define RB 2
 # define PA 1
-# define PAR 2
+
+# define SMALL 0
+# define BIG 1
 
 typedef struct s_node
 {
@@ -51,6 +48,7 @@ t_stack_set *init_stack_set(char *argv[]);
 int		error_occurred(char *msg, int ret);
 void	freeStrs(char **strs);
 int		is_integer(char *str);
+void	swap_value(int *first, int *second);
 
 int		push_back(t_stack *stack, int data);
 void	clear_all_nodes(t_stack *stack);
@@ -60,5 +58,10 @@ void	push(t_stack *from, t_stack *to);
 void	rotate(t_stack *stack);
 void	reverse_rotate(t_stack *stack);
 void	reverse_rotate_all(t_stack *a, t_stack *b);
+
+void quick_sort(int *arr, int start, int end);
+int	*first_partition(int size, int *pivot, t_stack_set *stacks);
+
+void	start_sort(t_stack_set *stacks);
 
 #endif
