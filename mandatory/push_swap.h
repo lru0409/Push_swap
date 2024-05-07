@@ -54,9 +54,13 @@ void	rotate(t_stack *stack);
 void	reverse_rotate(t_stack *stack);
 void	reverse_rotate_all(t_stack *a, t_stack *b);
 
+void	small_scale_sort(t_stack_set *stacks);
+
 void quick_sort(int *arr, int start, int end);
 int	*first_partition(int size, int *pivot, t_stack_set *stacks);
 void	start_sort(t_stack_set *stacks);
+
+int	*get_sorted_arr(int size, t_stack *stack);
 
 // utils.c
 void	freeStrs(char **strs);

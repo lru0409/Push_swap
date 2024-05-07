@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   sort_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 20:40:34 by rolee             #+#    #+#             */
-/*   Updated: 2024/04/25 20:39:22 by rolee            ###   ########.fr       */
+/*   Updated: 2024/05/07 22:06:01 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,19 +104,38 @@ int	*get_stack_arr(int size, t_stack *stack)
 	return arr;
 }
 
-int	*get_pivot(int size, t_stack *stack)
+int	*get_sorted_arr(int size, t_stack *stack)
 {
 	int		*arr;
+	t_node	*current;
+	
+	arr = (int *)malloc(sizeof(int) * size);
+	if (!arr)
+		exit(EXIT_FAILURE);
+	current = stack->top;
+	for(int idx = 0; idx < size; idx++)
+	{
+		arr[idx] = current->data;
+		current = current->next;
+		if (!current)
+			break;
+	}
+	quick_sort(arr, 0, size - 1);
+	return arr;
+}
+
+int	*get_pivot(int size, t_stack *stack)
+{
+	int		*sorted_arr;
 	int		*pivot;
 
-	arr = get_stack_arr(size, stack);
-	quick_sort(arr, 0, size - 1);
+	sorted_arr = get_sorted_arr(size, stack);
 	pivot = (int *)malloc(sizeof(int) * 2);
 	if (!pivot)
 		exit(EXIT_FAILURE);
-	pivot[SMALL] = arr[(size * 1/3) - 1];
-	pivot[BIG] = arr[(size * 2/3) - 1];
-	free(arr);
+	pivot[SMALL] = sorted_arr[(size * 1/3) - 1];
+	pivot[BIG] = sorted_arr[(size * 2/3) - 1];
+	free(sorted_arr);
 	return (pivot);
 }
 

@@ -6,7 +6,7 @@
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 21:43:10 by rolee             #+#    #+#             */
-/*   Updated: 2024/05/07 20:56:55 by rolee            ###   ########.fr       */
+/*   Updated: 2024/05/07 22:01:20 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,27 @@ int main(int argc, char *argv[])
 		return (end(NULL, 0, stacks));
 	if (elements_state == IS_DUPLICATED)
 		return (end("Error", 0, stacks));
-	
+	if (stacks->a->size <= 5)
+	{
+		small_scale_sort(stacks);
+		return (end(NULL, 0, stacks));
+	}
 	// start_sort(stacks);
 
-	t_node *current = stacks->a->top;
-	while (current)
-	{
-		printf("%d\n", current->data);
-		current = current->next;
-	}
+	// printf("a: ");
+	// t_node *current = stacks->a->top;
+	// while (current) {
+	// 	printf("%d ", current->data);
+	// 	current = current->next;
+	// }
+	// printf("\n");
+	// printf("b: ");
+	// current = stacks->b->top;
+	// while (current) {
+	// 	printf("%d ", current->data);
+	// 	current = current->next;
+	// }
+	// printf("\n");
 
 	return 0;
 }

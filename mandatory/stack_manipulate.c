@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_manipulation.c                               :+:      :+:    :+:   */
+/*   stack_manipulate.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:58:24 by rolee             #+#    #+#             */
-/*   Updated: 2024/04/25 19:27:13 by rolee            ###   ########.fr       */
+/*   Updated: 2024/05/07 21:50:18 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	rotate(t_stack *stack)
 	stack->top->prev = NULL;
 	stack->bottom->next = moving_node;
 	moving_node->prev = stack->bottom;
+	moving_node->next = NULL;
 	stack->bottom = moving_node;
 	print_command("r", 1, stack->name);
 }

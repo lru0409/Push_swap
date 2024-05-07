@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_helper.c                                      :+:      :+:    :+:   */
+/*   sort_stack_helper.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:24:27 by rolee             #+#    #+#             */
-/*   Updated: 2024/04/25 20:34:06 by rolee            ###   ########.fr       */
+/*   Updated: 2024/05/07 22:06:33 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void quick_sort(int *arr, int start, int end)
 	if (start < end)
 	{
 		int pivot = quick_sort_partition(arr, start, end);
-		quick_sort(arr, start, pivot-1);
-		quick_sort(arr, pivot+1, end);
+		quick_sort(arr, start, pivot - 1);
+		quick_sort(arr, pivot + 1, end);
 	}
 }
 
