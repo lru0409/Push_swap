@@ -6,17 +6,11 @@
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 20:42:50 by rolee             #+#    #+#             */
-/*   Updated: 2024/04/25 19:23:58 by rolee            ###   ########.fr       */
+/*   Updated: 2024/05/07 20:47:47 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int error_occurred(char *msg, int ret)
-{
-	ft_putendl_fd(msg, STDOUT_FILENO);
-	return (ret);
-}
 
 void freeStrs(char **strs)
 {

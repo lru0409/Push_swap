@@ -6,7 +6,7 @@
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 21:43:10 by rolee             #+#    #+#             */
-/*   Updated: 2024/04/25 20:40:02 by rolee            ###   ########.fr       */
+/*   Updated: 2024/05/07 20:56:55 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,29 @@ int check_elements(t_stack *stack)
 	return (IS_VALID);
 }
 
+int	end(char *msg, int ret, t_stack_set *stacks)
+{
+	if (msg)
+		ft_putendl_fd(msg, STDOUT_FILENO);
+	clear_stack_set(stacks);
+	return (ret);
+}
+
 int main(int argc, char *argv[])
 {
 	t_stack_set		*stacks;
 	int				elements_state;
 
+	stacks = NULL;
 	if (argc < 2)
-		return (error_occurred("Error", 0));
-	stacks = init_stack_set(argv + 1);
-	if (stacks == NULL)
-		return (error_occurred("Error", 0));
+		return (end("Error", 0, NULL));
+	if (init_stack_set(argv + 1, &stacks) == EXIT_FAILURE)
+		return (end(NULL, 0, stacks));
 	elements_state = check_elements(stacks->a);
 	if (elements_state == IS_SORTED)
-		return (0);
+		return (end(NULL, 0, stacks));
 	if (elements_state == IS_DUPLICATED)
-		return (error_occurred("Error", 0));
+		return (end("Error", 0, stacks));
 	
 	// start_sort(stacks);
 

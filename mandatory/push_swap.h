@@ -43,16 +43,11 @@ typedef struct s_stack_set
 	t_stack	*b;
 }	t_stack_set;
 
-t_stack_set *init_stack_set(char *argv[]);
-
-int		error_occurred(char *msg, int ret);
-void	freeStrs(char **strs);
-int		is_integer(char *str);
-void	swap_value(int *first, int *second);
-
-int		push_back(t_stack *stack, int data);
-void	clear_all_nodes(t_stack *stack);
-
+// stack_setup.c
+int	init_stack_set(char *argv[], t_stack_set **stacks);
+// stack_clear.c
+void	clear_stack_set(t_stack_set *stack_set);
+// stack_manipulate.c
 void	swap(t_stack *stack);
 void	push(t_stack *from, t_stack *to);
 void	rotate(t_stack *stack);
@@ -61,7 +56,11 @@ void	reverse_rotate_all(t_stack *a, t_stack *b);
 
 void quick_sort(int *arr, int start, int end);
 int	*first_partition(int size, int *pivot, t_stack_set *stacks);
-
 void	start_sort(t_stack_set *stacks);
+
+// utils.c
+void	freeStrs(char **strs);
+int		is_integer(char *str);
+void	swap_value(int *first, int *second);
 
 #endif
