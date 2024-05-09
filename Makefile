@@ -1,30 +1,43 @@
-NAME = push_swap
+MANDATORY_NAME = push_swap
+BONUS_NAME = checker
 
-SRCS = $(wildcard mandatory/*.c)
+MANDATORY_SRCS = $(wildcard mandatory/*.c)
+BONUS_SRCS = $(wildcard bonus/*.c)
 
-OBJS = $(SRCS:.c=.o)
-LIBFT_OBJS = $(wildcard libft/**/*.o)
+MANDATORY_OBJS = $(MANDATORY_SRCS:.c=.o)
+BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
 CC = cc
-CFLAGS = -c -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
+
+ifdef BONUS
+	NAME = $(BONUS_NAME)
+	OBJS = $(BONUS_OBJS)
+else
+	NAME = $(MANDATORY_NAME)
+	OBJS = $(MANDATORY_OBJS)
+endif
 
 all : $(NAME)
 
+bonus :
+	make BONUS=1
+
 $(NAME) : $(OBJS)
-	make -C libft bonus
-	$(CC) -o $(NAME) $(OBJS) libft/libft.a 
+	make -C libft all
+	$(CC) $(FLAGS) -o $(NAME) $(OBJS) libft/libft.a
 
 %.o : %.c
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(FLAGS) -c $^ -o $@
 
 clean :
 	make -C libft clean
-	rm -f $(OBJS)
+	rm -f $(MANDATORY_OBJS) $(BONUS_OBJS)
 
 fclean : clean
 	make -C libft fclean
-	rm -f $(NAME)
+	rm -f $(MANDATORY_NAME) $(BONUS_NAME)
 
 re : fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
