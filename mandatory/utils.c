@@ -6,15 +6,15 @@
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 20:42:50 by rolee             #+#    #+#             */
-/*   Updated: 2024/05/07 20:47:47 by rolee            ###   ########.fr       */
+/*   Updated: 2024/05/09 20:46:39 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void freeStrs(char **strs)
+void	free_strs(char **strs)
 {
-	int idx;
+	int	idx;
 
 	idx = 0;
 	while (strs[idx])
@@ -25,9 +25,9 @@ void freeStrs(char **strs)
 	free(strs);
 }
 
-int is_integer(char *str)
+int	is_integer(char *str)
 {
-	int idx;
+	int	idx;
 
 	idx = 0;
 	if (str[idx] == '-')
@@ -47,9 +47,16 @@ int is_integer(char *str)
 
 void	swap_value(int *first, int *second)
 {
-	int temp;
+	int	temp;
 
 	temp = *first;
 	*first = *second;
 	*second = temp;
+}
+
+void	print_command(char *cmd, size_t cmd_size, char stack)
+{
+	write(STDOUT_FILENO, cmd, cmd_size);
+	write(STDOUT_FILENO, &stack, 1);
+	write(STDOUT_FILENO, "\n", 1);
 }

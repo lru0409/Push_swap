@@ -6,7 +6,7 @@
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 20:45:48 by rolee             #+#    #+#             */
-/*   Updated: 2024/05/07 20:46:25 by rolee            ###   ########.fr       */
+/*   Updated: 2024/05/09 20:38:22 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ static void	clear_all_nodes(t_stack *stack);
 void	clear_stack_set(t_stack_set *stacks)
 {
 	if (!stacks)
-		return;
-	if (stacks->a) {
+		return ;
+	if (stacks->a)
+	{
 		clear_all_nodes(stacks->a);
 		free(stacks->a);
 	}
-	if (stacks->b) {
+	if (stacks->b)
+	{
 		clear_all_nodes(stacks->b);
 		free(stacks->b);
 	}
@@ -31,11 +33,11 @@ void	clear_stack_set(t_stack_set *stacks)
 
 static void	clear_all_nodes(t_stack *stack)
 {
-	t_node *current;
-	t_node *next;
+	t_node	*current;
+	t_node	*next;
 
 	if (stack == NULL)
-		return;
+		return ;
 	current = stack->top;
 	while (current)
 	{
