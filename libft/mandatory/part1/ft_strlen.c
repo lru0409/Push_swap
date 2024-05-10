@@ -6,7 +6,7 @@
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:50:26 by rolee             #+#    #+#             */
-/*   Updated: 2024/03/20 16:54:59 by rolee            ###   ########.fr       */
+/*   Updated: 2024/05/10 19:14:19 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ size_t	ft_strlen(const char *s)
 {
 	size_t	idx;
 
+	if (s == NULL)
+		return (0);
 	idx = 0;
 	while (s[idx] != '\0')
 		idx++;

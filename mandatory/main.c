@@ -6,7 +6,7 @@
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 21:43:10 by rolee             #+#    #+#             */
-/*   Updated: 2024/05/09 22:10:02 by rolee            ###   ########.fr       */
+/*   Updated: 2024/05/10 19:46:37 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,17 @@
 static int	check_elements(t_stack *stack);
 static int	end(char *msg, int fd, int ret, t_stack_set *stacks);
 
+void leaks()
+{
+	system("leaks push_swap");
+}
+
 int	main(int argc, char *argv[])
 {
 	t_stack_set		*stacks;
 	int				elements_state;
 
+	atexit(leaks);
 	stacks = NULL;
 	if (argc < 2)
 		return (end("Error", STDERR_FILENO, EXIT_FAILURE, NULL));

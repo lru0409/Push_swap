@@ -6,14 +6,15 @@
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 21:17:28 by rolee             #+#    #+#             */
-/*   Updated: 2024/05/09 22:11:56 by rolee            ###   ########.fr       */
+/*   Updated: 2024/05/10 19:40:14 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
 
-static int	check_stack_sorted(t_stack_set	*stacks);
+static int	execute(t_stack_set	*stacks);
 static int	is_duplicated(t_stack *stack);
+static int	check_stack_sorted(t_stack_set	*stacks);
 static int	end(char *msg, int fd, int ret, t_stack_set *stacks);
 
 int	main(int argc, char *argv[])
@@ -28,31 +29,12 @@ int	main(int argc, char *argv[])
 	if (is_duplicated(stacks->a))
 		return (end("Error", STDERR_FILENO, EXIT_FAILURE, stacks));
 	if (execute(stacks) == EXIT_FAILURE)
-		return (end(NULL, STDOUT_FILENO, EXIT_FAILURE, stacks)); // TODO : 메시지 넣어야 할지도
+		return (end("Error", STDERR_FILENO, EXIT_FAILURE, stacks));
 	if (check_stack_sorted(stacks))
 		ft_putendl_fd("OK", STDOUT_FILENO);
 	else
 		ft_putendl_fd("KO", STDOUT_FILENO);
 	return (end(NULL, STDOUT_FILENO, EXIT_SUCCESS, stacks));
-}
-
-static int	check_stack_sorted(t_stack_set	*stacks)
-{
-	t_node	*current;
-	
-	if (stacks->a->size >= 2)
-	{
-		current = stacks->a->top->next;
-		while (current)
-		{
-			if (current->prev->data > current->data)
-				return (FALSE);
-			current = current->next;
-		}
-	}
-	if (stacks->b->size != 0)
-		return (FALSE);
-	return (TRUE);
 }
 
 static int	is_duplicated(t_stack	*stack)
@@ -75,10 +57,48 @@ static int	is_duplicated(t_stack	*stack)
 	return (FALSE);
 }
 
+static int	execute(t_stack_set *stacks)
+{
+	char	*line;
+
+	while (TRUE)
+	{
+		line = get_next_line(STDIN_FILENO);
+		if (!line)
+			break;
+		if (execute_command(line, stacks) == EXIT_FAILURE)
+		{
+			free(line);
+			return (EXIT_FAILURE);
+		}
+		free(line);
+	}
+	return (EXIT_SUCCESS);
+}
+
+static int	check_stack_sorted(t_stack_set	*stacks)
+{
+	t_node	*current;
+	
+	if (stacks->a->size >= 2)
+	{
+		current = stacks->a->top->next;
+		while (current)
+		{
+			if (current->prev->data > current->data)
+				return (FALSE);
+			current = current->next;
+		}
+	}
+	if (stacks->b->size != 0)
+		return (FALSE);
+	return (TRUE);
+}
+
 static int	end(char *msg, int fd, int ret, t_stack_set *stacks)
 {
 	if (msg)
 		ft_putendl_fd(msg, fd);
-	// clear_stack_set(stacks);
+	clear_stack_set(stacks);
 	return (ret);
 }

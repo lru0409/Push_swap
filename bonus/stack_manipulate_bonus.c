@@ -6,7 +6,7 @@
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:58:24 by rolee             #+#    #+#             */
-/*   Updated: 2024/05/09 21:26:14 by rolee            ###   ########.fr       */
+/*   Updated: 2024/05/10 18:28:39 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	swap(t_stack *stack)
 	temp = stack->top->data;
 	stack->top->data = stack->top->next->data;
 	stack->top->next->data = temp;
-	print_command("s", 1, stack->name);
 }
 
 void	push(t_stack *from, t_stack *to)
@@ -44,7 +43,6 @@ void	push(t_stack *from, t_stack *to)
 	to->top = moving_node;
 	from->size -= 1;
 	to->size += 1;
-	print_command("p", 1, to->name);
 }
 
 void	rotate(t_stack *stack)
@@ -60,10 +58,9 @@ void	rotate(t_stack *stack)
 	moving_node->prev = stack->bottom;
 	moving_node->next = NULL;
 	stack->bottom = moving_node;
-	print_command("r", 1, stack->name);
 }
 
-void	reverse_rotate(t_stack *stack, int print)
+void	reverse_rotate(t_stack *stack)
 {
 	t_node	*moving_node;
 
@@ -76,13 +73,10 @@ void	reverse_rotate(t_stack *stack, int print)
 	moving_node->next = stack->top;
 	stack->top->prev = moving_node;
 	stack->top = moving_node;
-	if (print == TRUE)
-		print_command("rr", 2, stack->name);
 }
 
 void	reverse_rotate_all(t_stack *a, t_stack *b)
 {
-	reverse_rotate(a, FALSE);
-	reverse_rotate(b, FALSE);
-	print_command("rr", 2, 'r');
+	reverse_rotate(a);
+	reverse_rotate(b);
 }

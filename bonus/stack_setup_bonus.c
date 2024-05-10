@@ -6,11 +6,11 @@
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 20:06:51 by rolee             #+#    #+#             */
-/*   Updated: 2024/05/09 22:05:39 by rolee            ###   ########.fr       */
+/*   Updated: 2024/05/10 18:29:05 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker_bonus.h"
 
 static t_stack	*init_stack(char name);
 static int		set_a_stack(t_stack *a_stack, char *argv[]);

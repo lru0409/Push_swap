@@ -6,7 +6,7 @@
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 18:00:44 by rolee             #+#    #+#             */
-/*   Updated: 2024/03/20 16:59:03 by rolee            ###   ########.fr       */
+/*   Updated: 2024/05/10 18:57:25 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ char	*ft_strchr(const char *s, int c)
 {
 	int		idx;
 
+	if (!s)
+		return (NULL);
 	idx = 0;
 	while (s[idx])
 	{

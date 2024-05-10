@@ -1,6 +1,6 @@
 NAME = libft.a
 
-SRCS = $(wildcard Mandatory/**/*.c)
+SRCS = $(wildcard Mandatory/**/*.c) $(wildcard get_next_line/*.c)
 BONUS_SRCS = $(wildcard BONUS/*.c)
 
 OBJS = $(SRCS:.c=.o)
