@@ -15,17 +15,11 @@
 static int	check_elements(t_stack *stack);
 static int	end(char *msg, int fd, int ret, t_stack_set *stacks);
 
-void leaks()
-{
-	system("leaks push_swap");
-}
-
 int	main(int argc, char *argv[])
 {
 	t_stack_set		*stacks;
 	int				elements_state;
 
-	atexit(leaks);
 	stacks = NULL;
 	if (argc < 2)
 		return (end("Error", STDERR_FILENO, EXIT_FAILURE, NULL));

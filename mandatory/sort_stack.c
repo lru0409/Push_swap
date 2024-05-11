@@ -23,9 +23,11 @@ void	start_sort(t_stack_set *stacks)
 
 	pivot = get_pivot(stacks->a->size, stacks->a);
 	op_cnt = first_partition(stacks->a->size, pivot, stacks);
+	free(pivot);
 	sort_stack(stacks->a, op_cnt[RA], stacks);
 	sort_stack(stacks->b, op_cnt[PB] - op_cnt[RB], stacks);
 	sort_stack(stacks->b, op_cnt[RB], stacks);
+	free(op_cnt);
 }
 
 static void	sort_stack(t_stack *stack, int size, t_stack_set *stacks)
@@ -39,6 +41,7 @@ static void	sort_stack(t_stack *stack, int size, t_stack_set *stacks)
 	if (stack->name == 'a')
 	{
 		op_cnt = partition_a(size, pivot, stacks);
+		free(pivot);
 		reverse_stacks(op_cnt[RA], op_cnt[RB], stacks);
 		sort_stack(stacks->a, op_cnt[RA], stacks);
 		sort_stack(stacks->b, op_cnt[RB], stacks);
@@ -47,12 +50,12 @@ static void	sort_stack(t_stack *stack, int size, t_stack_set *stacks)
 	else
 	{
 		op_cnt = partition_b(size, pivot, stacks);
+		free(pivot);
 		sort_stack(stacks->a, op_cnt[PA] - op_cnt[RA], stacks);
 		reverse_stacks(op_cnt[RA], op_cnt[RB], stacks);
 		sort_stack(stacks->a, op_cnt[RA], stacks);
 		sort_stack(stacks->b, op_cnt[RB], stacks);
 	}
-	free(pivot);
 	free(op_cnt);
 }
 
