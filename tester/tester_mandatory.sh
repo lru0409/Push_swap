@@ -2,8 +2,8 @@ max=0
 for var in {1..100}
 do
     args="$(seq 100 | sort -R)"
-    result=$(./push_swap $args | ./checker_Mac $args)
-    command_count=$(./push_swap $args | wc -l | tr -d ' ')
+    result=$(../push_swap $args | ../checker_Mac $args)
+    command_count=$(../push_swap $args | wc -l | tr -d ' ')
     echo $result
     if [ $result == "KO" ]
     then
