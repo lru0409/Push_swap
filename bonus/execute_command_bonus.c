@@ -6,7 +6,7 @@
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 21:43:03 by rolee             #+#    #+#             */
-/*   Updated: 2024/05/10 19:40:34 by rolee            ###   ########.fr       */
+/*   Updated: 2024/05/13 11:39:33 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	execute_push(char *command, t_stack_set *stacks);
 static void	execute_rotate(char *command, t_stack_set *stacks);
 static void	execute_reverse_rotate(char *command, t_stack_set *stacks);
 
-int execute_command(char *command, t_stack_set *stacks)
+int	execute_command(char *command, t_stack_set *stacks)
 {
 	if (command[0] == 's' && command[2] == '\n' && \
 			(command[1] == 'a' || command[1] == 'b' || command[1] == 's'))

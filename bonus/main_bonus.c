@@ -6,7 +6,7 @@
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 21:17:28 by rolee             #+#    #+#             */
-/*   Updated: 2024/05/10 19:40:14 by rolee            ###   ########.fr       */
+/*   Updated: 2024/05/13 11:39:26 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	execute(t_stack_set *stacks)
 	{
 		line = get_next_line(STDIN_FILENO);
 		if (!line)
-			break;
+			break ;
 		if (execute_command(line, stacks) == EXIT_FAILURE)
 		{
 			free(line);
@@ -79,7 +79,7 @@ static int	execute(t_stack_set *stacks)
 static int	check_stack_sorted(t_stack_set	*stacks)
 {
 	t_node	*current;
-	
+
 	if (stacks->a->size >= 2)
 	{
 		current = stacks->a->top->next;

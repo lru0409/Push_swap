@@ -6,7 +6,7 @@
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 10:31:34 by rolee             #+#    #+#             */
-/*   Updated: 2024/05/09 22:00:24 by rolee            ###   ########.fr       */
+/*   Updated: 2024/05/13 11:40:19 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,6 @@ void		ft_lstiter(t_list *lst, void (*f)(void *));
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 // get_next_line
-char	*get_next_line(int fd);
+char		*get_next_line(int fd);
 
 #endif

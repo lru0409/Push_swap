@@ -6,12 +6,12 @@
 /*   By: rolee <rolee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 21:17:56 by rolee             #+#    #+#             */
-/*   Updated: 2024/05/10 19:44:53 by rolee            ###   ########.fr       */
+/*   Updated: 2024/05/13 11:40:58 by rolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_BONUS
-# define CHECKER_BONUS
+#ifndef CHECKER_BONUS_H
+# define CHECKER_BONUS_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -39,7 +39,7 @@ typedef struct s_stack_set
 }	t_stack_set;
 
 // stack_setup
-int	init_stack_set(char *argv[], t_stack_set **stacks);
+int		init_stack_set(char *argv[], t_stack_set **stacks);
 // stack_manipulate
 void	swap(t_stack *stack);
 void	push(t_stack *from, t_stack *to);
@@ -50,11 +50,11 @@ void	reverse_rotate_all(t_stack *a, t_stack *b);
 void	clear_stack_set(t_stack_set *stacks);
 
 // execute
-int execute_command(char *command, t_stack_set *stacks);
+int		execute_command(char *command, t_stack_set *stacks);
 
 // utils
 void	free_strs(char **strs);
-int	is_integer(char *str);
+int		is_integer(char *str);
 void	swap_value(int *first, int *second);
 
 #endif
