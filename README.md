@@ -20,5 +20,5 @@
 - **rrr** : rra와 rrb를 동시에 수행
 
 ##
-정렬을 위해 Quick Sort 알고리즘을 응용하여 활용했다.
-자세한 내용은 [여기서](https://velog.io/@ronn/Pushswap-%EB%91%90-%EC%8A%A4%ED%83%9D%EC%9D%84-%EA%B0%80%EC%A7%80%EA%B3%A0-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-%EC%A0%95%EB%A0%AC%ED%95%98%EC%9E%90) 확인할 수 있다.
+정렬을 위해 Quick Sort 알고리즘을 응용하여 활용했다.   
+학습 내용과 프로젝트 진행 과정에 대한 자세한 이야기는 [여기서](https://velog.io/@ronn/Pushswap-%EB%91%90-%EC%8A%A4%ED%83%9D%EC%9D%84-%EA%B0%80%EC%A7%80%EA%B3%A0-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-%EC%A0%95%EB%A0%AC%ED%95%98%EC%9E%90) 확인할 수 있다.
